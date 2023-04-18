@@ -2,13 +2,14 @@
  * Copyright 2023 @WEBLEGENDS
  */
 //Select Elements
+const input_element = document.querySelector('.input');
 const output_operation_element = document.querySelector('.operation .value');
 const output_result_element = document.querySelector('.result .value');
 const input_element = document.querySelector('.input');
 
-console.log(output_operation_element, output_result_element, input_element)
+//console.log(output_operation_element, output_result_element, input_element)
 
-const POWER ="POWER(",  FACTORIAL = "FACTORIAL";
+const POWER = "POWER(", FACTORIAL = "FACTORIAL";
 
 
 let data = {
@@ -267,19 +268,26 @@ function calculator(btn) {
         data.operation.push(btn.symbol)
         data.formula.push(btn.formula)
     }
-    else if(btn.type == 'trigo_function') {
-        
-    }else if(btn.type == 'math_function') {
-        
-    }else if(btn.type == 'key') {
-        
+    else if (btn.type == 'trigo_function') {
+        data.operation.push(btn.symbol)
+        data.formula.push(btn.formula)
+    } else if (btn.type == 'math_function') {
+
+    } else if (btn.type == 'key') {
+
+    }
+    
+    else if (btn.type == 'calculate') {
+       let formular_str = data.formula.join('');
+
+        let result = eval(formular_str);
+
     }
     else if(btn.type == 'calculate') {
         const formular_str = data.formula.join('');
         const result = eval(formular_str); 
         updateOutputResult(result);
 
-        
     }
     updateOutputOperation(data.operation.join(''))
 }
