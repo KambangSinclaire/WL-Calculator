@@ -270,18 +270,89 @@ function calculator(btn) {
     else if(btn.type == 'trigo_function') {
         
     }else if(btn.type == 'math_function') {
+
+        let symbol, formula;
+ 
+         if( btn.name == "power"){
+            symbol = "^(";
+            formula = btn.formula;
+
+            data.operation.push(symbol);
+            data.formula.push(formula);
+        } else{
+            symbol = btn.symbol + "(";
+            formula = btn.formula + "(";
+            data.operation.push(symbol);
+            data.formula.push(formula);
+        }
         
     }else if(btn.type == 'key') {
         
     }
     else if(btn.type == 'calculate') {
-        const formular_str = data.formula.join('');
-        const result = eval(formular_str); 
-        updateOutputResult(result);
+       
+        formular_str = data.formula.join('');
 
+        let POWER_SEARCH_RESULT = search(data.formula, POWER);
+        console.log(data.formula, POWER_SEARCH_RESULT);
+
+        const BASES = powerBaseGetter(data.formula, POWER_SEARCH_RESULT);
+        console.log(BASES);
+        BASES.forEach( base => {
+            let toReplace = base + POWER;
+            let replacement = "Math.pow(" + base + ",";  
+
+            formular_str = formular_str.replace(toReplace, replacement)
+        })
+        
+        let result = eval(formular_str);
+
+        updateOutputResult(result);
         
     }
     updateOutputOperation(data.operation.join(''))
+}
+
+function powerBaseGetter(formula, POWER_SEARCH_RESULT){
+    let powers_bases = [];
+
+    POWER_SEARCH_RESULT.forEach( power_index => {
+        let base = [];
+
+        let parentheses_count = 0;
+
+        let previous_index = power_index - 1;
+
+        while( previous_index >= 0){
+
+            if( formula[previous_index] == "(") parentheses_count--;
+            if( formula[previous_index] == ")") parentheses_count++;
+
+           let is_operator = false;
+           let OPERATORS = ['+', `-`, `*`, `%`];
+            OPERATORS.forEach( OPERATOR => {
+                if( formula[previous_index] == OPERATOR ) is_operator = true;
+            })
+
+            let is_power = formula[previous_index] == POWER;
+
+            if( (is_operator && parentheses_count == 0) || is_power) break;
+            base.unshift( formula[previous_index]);
+            previous_index--;
+        }
+        powers_bases.push( base.join('') );
+    })
+    return powers_bases 
+}
+
+function search(array, keyword){
+    let search_result = [];
+
+    array.forEach( (element, index) => {
+        if(element == keyword) search_result.push(index);
+    })
+
+    return search_result;
 }
 
 function updateOutputOperation(operation) {
