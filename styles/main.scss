@@ -8,12 +8,12 @@
 
 html {
     font-size: 16px;
-    background-color: #636363;
+    background-color: $lightGrey;
 }
 
 h1 {
     text-align: center;
-    color: white;
+    color: $mainwhite;
     font-size: 5em;
     margin-top: 5%;
 }
@@ -27,7 +27,7 @@ h1 {
 }
 
 .calc-container {
-    background-color: #1d1d1d;
+    background-color: $darkBlack;
     width: 600px;
     height: auto;
     border-radius: 0 0 30px 30px;

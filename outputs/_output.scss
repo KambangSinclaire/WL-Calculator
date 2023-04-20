@@ -5,37 +5,36 @@
   .operation {
     width: 600px;
     height: 70px;
-    color: #878787;
+    color: $lightGrey;
     font-size: 1.9em;
     font-weight: bold;
     position: relative;
     overflow: hidden;
-  }
-  
-  .operation .value {
-    position: absolute;
-    bottom: 5px;
-    right: 10px;
-    white-space: nowrap;
-    overflow: hidden;
+   .value {
+      position: absolute;
+      bottom: 5px;
+      right: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
   }
   
   .result {
     width: 600px;
     height: 140px;
-    color: #FFF;
+    color: $mainwhite;
     font-size: 2.6em;
     font-weight: bold;
     overflow: hidden;
     position: relative;
+    .value {
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+      right: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
   }
   
-  .result .value {
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
-    right: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-  }
