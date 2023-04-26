@@ -40,9 +40,9 @@ let calculator_buttons = [
         type : "math_function"
     },
     {
-        name : "square",
+        name : "²",
         symbol : "x²",
-        formula : POWER,
+        formula : Math.pow,
         type : "math_function"
     },
     {
@@ -90,7 +90,8 @@ let calculator_buttons = [
         symbol : "tan",
         formula : "trigo(Math.tan,",
         type : "trigo_function"
-    },{
+    },
+    {
         name : "7",
         symbol : 7,
         formula : 7,
@@ -267,6 +268,11 @@ function calculator(btn) {
         data.operation.push(btn.symbol)
         data.formula.push(btn.formula)
     }
+    else if(btn.name == '²'){
+     data.formula.push('**2')
+     data.operation.push(btn.name)
+    }
+   
     else if(btn.type == 'trigo_function') {
         
     }else if(btn.type == 'math_function') {
