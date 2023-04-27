@@ -267,11 +267,26 @@ function calculator(btn) {
         data.operation.push(btn.symbol)
         data.formula.push(btn.formula)
     }
+
     else if(btn.type == 'trigo_function') {
+
+        data.operation.push(btn.symbol)
+        data.formula.push(btn.formula)
         
     }else if(btn.type == 'math_function') {
         
-    }else if(btn.type == 'key') {
+        data.operation.push(btn.symbol)
+        data.formula.push(btn.formula)
+        
+    }
+    //Exp by Idriss
+    else if(btn.name == 'exp'){
+        data.operation.push(btn.symbol)
+        data.formula.push(btn.formula)
+
+    }
+    //end of exp by Idriss
+    else if(btn.type == 'key') {
         
     }
     else if(btn.type == 'calculate') {
@@ -291,5 +306,3 @@ function updateOutputOperation(operation) {
 function updateOutputResult(result) {
     output_result_element.innerHTML = result;
 }
-
-
